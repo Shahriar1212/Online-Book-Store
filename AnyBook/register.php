@@ -1,3 +1,62 @@
+<?php 
+
+//session_start();
+include("includes/db.php");
+
+if(isset($_POST['register-submit'])) {
+	session_start();
+
+	$username 		= htmlspecialchars(stripslashes(trim($_POST['username'])));
+	$email 			= htmlspecialchars(stripslashes(trim($_POST['email'])));
+	$phone 			= htmlspecialchars(stripslashes(trim($_POST['phone'])));
+	$password 		= htmlspecialchars(stripslashes(trim($_POST['password'])));
+	$confirm 		= htmlspecialchars(stripslashes(trim($_POST['confirm_password'])));
+
+	if($password == $confirm){
+		$password = md5($password);
+		date_default_timezone_set('Asia/Dhaka');
+		$currentTime = date('Y-m-d H:i:s');
+		$status = 1;
+
+		$sql = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('$username', '$email', $phone, '$password', '$currentTime', '$status')";
+		//$sqlInsert = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('".$username."', '".$email.'",'".$password.'",'".$currentTime.'",'".$status.'")";
+
+		mysqli_query($db, $sql);
+		$_SESSION['message'] = 'you are logged in successfully';
+		$_SESSION['username'] = $username;
+		header('location: user_profile.php');
+
+	} else {
+		$_SESSION['message'] = 'password didnt match';
+	}
+}
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -74,7 +133,10 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="register-form" method="post" role="form" >
+
+								<!-- form starts from here ------------------------ -->
+
+								<form id="register-form" method="post" role="form" action="register.php">
 
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="" required >
@@ -83,10 +145,13 @@
 										<input type="email" name="email" id="register_email" tabindex="1" class="form-control" placeholder="Email Address" value="" required >
 									</div>
 									<div class="form-group">
+										<input type="phone" name="phone" id="register_email" tabindex="1" class="form-control" placeholder="Phone Number" value="" required >
+									</div>
+									<div class="form-group">
 										<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
 									</div>
 									<div class="form-group">
-										<input type="password" name="confirm_password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+										<input type="password" name="confirm_password" id="password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
 									</div>
 									<div class="form-group">
 										<div class="row">
@@ -96,6 +161,9 @@
 										</div>
 									</div>
 								</form>
+
+								<!-- form ends here ----------------  -->
+
 							</div>
 						</div>
 					</div>
