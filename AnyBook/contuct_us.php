@@ -2,7 +2,7 @@
 <?php include("includes/header.php") ?>
 <link rel="stylesheet" href="css/contuct_us_style.css">
 
-<div class="l">
+<div class="my_contuct">
 
 	<div class="main">
 		<div class="info">Hello! We are always ready to serve you :)</div>

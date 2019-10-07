@@ -2,8 +2,8 @@
 <?php include("includes/header.php") ?>
 <link rel="stylesheet" href="css/about_us_style.css">
 
-<div class="l">
-    <div class= "container">
+<div>
+    <div class= "container my_container">
         <div class= "about">
             <div class= "text">
             <h1>About Us</h1>
