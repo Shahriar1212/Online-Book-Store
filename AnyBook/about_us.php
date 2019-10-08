@@ -1,5 +1,10 @@
 
-<?php include("includes/header.php") ?>
+<?php 
+session_start();
+include("includes/header.php");
+
+
+?>
 <link rel="stylesheet" href="css/about_us_style.css">
 
 <div>

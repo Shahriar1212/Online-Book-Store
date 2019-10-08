@@ -24,6 +24,7 @@ if(isset($_POST['register-submit'])) {
 		mysqli_query($db, $sql);
 		$_SESSION['message'] = 'you are logged in successfully';
 		$_SESSION['username'] = $username;
+		$_SESSION['email'] = $email;
 		header('location: user_profile.php');
 
 	} else {

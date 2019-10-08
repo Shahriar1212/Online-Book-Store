@@ -84,7 +84,7 @@
 	<form class="form-inline my-2 my-lg-0 pl-2" action="register.php">
       <button class="btn btn-outline-warning my-2 my-sm-0">Register</button>
     </form> -->
-    <form class="form-inline my-2 my-lg-0 pl-2" onclick="window.location.href = 'logout.php';">
+    <form class="form-inline my-2 my-lg-0 pl-2" onclick="window.location.href = 'user_profile.php';">
       <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>
     </form>
   </div>

@@ -1,3 +1,48 @@
+<?php
+include("includes/db.php");
+session_start();
+?>
+
+<?php
+
+if(isset($_POST['login-submit'])){
+	$email 			= htmlspecialchars(stripslashes(trim($_POST['email'])));
+	$password 		= htmlspecialchars(stripslashes(trim($_POST['password'])));
+
+	$password = md5($password);
+	$sql = "SELECT * FROM user WHERE email='$email' AND password='$password'"
+					or die("failed to execute".mysqli_errno());
+	$result = mysqli_query($db,$sql);
+	$row = mysqli_fetch_array($result);
+		
+		
+		$_SESSION['email'] = $email;
+	
+		$_SESSION['username'] = $row['username'];
+		$_SESSION['user_id'] = $row['user_id'];
+		$_SESSION['phone'] = $row['phone'];
+		$_SESSION['status'] = $row['status'];
+		$_SESSION['status'] = 1;
+
+	if(mysqli_num_rows($result) == 1){
+
+		$_SESSION['message'] = "you are logged in";
+		header("location: user_profile.php");
+	}
+}
+
+
+?>
+
+
+
+
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,7 +111,11 @@
 					<div class="panel-body">
 						<div class="row">
 							<div class="col-lg-12">
-								<form id="login-form"  method="post" role="form" style="display: block;">
+
+
+								<!-- form starts from here--------------------- -->
+
+								<form id="login-form"  method="post" action="login.php" role="form" style="display: block;">
 									<div class="form-group">
 										<input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" required>
 									</div>
@@ -74,10 +123,10 @@
 										<input type="password" name="password" id="login-
 										password" tabindex="2" class="form-control" placeholder="Password" required>
 									</div>
-									<div class="form-group text-center">
+									<!-- <div class="form-group text-center">
 										<input type="checkbox" tabindex="3" class="" name="remember" id="remember">
 										<label for="remember"> Remember Me</label>
-									</div>
+									</div> -->
 									<div class="form-group">
 										<div class="row">
 											<div class="col-sm-6 col-sm-offset-3">
@@ -85,7 +134,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="form-group">
+									<!-- <div class="form-group">
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="text-center">
@@ -93,7 +142,7 @@
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> -->
 								</form>
 								
 							</div>
