@@ -1,18 +1,20 @@
 
 <?php include("includes/header_user_account.php");
-session_start();
 ?>
 
 
 <?php
     if(isset($_SESSION['username'])){
-        echo "hello". $_SESSION['username'];
         
     } else {
-        //header("location: index.php");
+        $_SESSION['not-logged-in'] = true;
+        header('location: login.php');
     }
 
 ?>
+
+
+
 
 <link rel="stylesheet" href="css/user_profile_style.css">
 
@@ -20,7 +22,7 @@ session_start();
  <div class="wrapper my_wrapper">
     <div class="left">
         <img src="img/test.png" width="180" height="200">
-        <h4>Shahriar Hasan Chowdhury</h4>
+        <h4><?php echo $_SESSION['username']; ?></h4>
         
     </div>
     <div class="right">
@@ -29,17 +31,17 @@ session_start();
             <div class="info_data">
                  <div class="data">
                     <h4>Phone</h4>
-                    <p>01521429409</p>
+                    <p><?php echo $_SESSION['phone']; ?></p>
                  </div>
                  <div class="data">
                     <h4>Email</h4>
-                    <p>shahriarmoin.aust@gmail.com</p>
-              </div>
+                    <p><?php echo $_SESSION['email']; ?></p>
+                 </div>
+                 <div class="data">
+                    <a href="logout.php"> Logout </a>
+                 </div>
             </div>
         </div>
-      
-      
-      
         
     </div>
  </div>

@@ -3,9 +3,62 @@
 session_start();
 include("includes/header.php");
 
-
+if(isset($_SESSION['try-to-login-again'])) {
+		echo '<script language="javascript">';
+		echo 'var r =confirm("you are already logged in");';
+		echo '</script>';
+		unset($_SESSION['test']);
+}
 ?>
 
+
+<?php 
+    function get_img_path($img_name) {
+		$db = mysqli_connect('localhost', 'root', '', 'any_book');
+		$sql = "SELECT * FROM book WHERE book_name = '".$img_name."'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result);
+		$path = $row['path'];
+        return $path;
+	}
+	function get_book_name($img_name) {
+		$db = mysqli_connect('localhost', 'root', '', 'any_book');
+		$sql = "SELECT * FROM book WHERE book_name = '".$img_name."'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result);
+		$book_name = $row['book_name'];
+        return $book_name;
+	}
+
+	function get_writer_name($img_name) {
+		$db = mysqli_connect('localhost', 'root', '', 'any_book');
+		$sql = "SELECT * FROM book WHERE book_name = '".$img_name."'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result);
+		$writer_name = $row['writer_name'];
+        return $writer_name;
+	}
+	function get_book_price($img_name) {
+		$db = mysqli_connect('localhost', 'root', '', 'any_book');
+		$sql = "SELECT * FROM book WHERE book_name = '".$img_name."'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result);
+		$book_price = $row['book_price'];
+        return $book_price;
+	}
+	function get_book_id($img_name) {
+		$db = mysqli_connect('localhost', 'root', '', 'any_book');
+		$sql = "SELECT * FROM book WHERE book_name = '".$img_name."'";
+		$result = mysqli_query($db,$sql);
+		$row = mysqli_fetch_array($result);
+		$book_id = $row['book_id'];
+        return $book_id;
+	}
+
+	function get($img_name){
+
+	}
+?>
 
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -81,57 +134,85 @@ include("includes/header.php");
 
 
 
+
 <div class="container mt-5">
 	<div class="row">
+
+<?php
+	$img_path 		= get_img_path("Motivate Others");
+	$book_name 		= get_book_name("Motivate Others");
+	$writer_name 	= get_writer_name("Motivate Others");
+	$book_price 	= get_book_price("Motivate Others");
+	$book_id		= get_book_id("Motivate Others");
+?>	
+
 		<div class="col-md-3">
 			<div class="card">
-				<img src="img/100-ways-motivate-others.jpg" alt="card-1" class="card-img-top">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-					<h5>motivate others</h5>
-					<h6>by steve chandler</h6>
-					<h6>$34.00</h6>
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+<?php
+	$img_path 		= get_img_path("body-langulage");
+	$book_name 		= get_book_name("body-langulage");
+	$writer_name 	= get_writer_name("body-langulage");
+	$book_price 	= get_book_price("body-langulage");
+?>		
+		<div class="col-md-3">
+			<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+				<div class="card-body">
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+<?php
+	$search_by = "the-power of habit";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>		
+		<div class="col-md-3">
+			<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+				<div class="card-body">
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 				</div>
 			</div>
 		</div>
 		
+<?php
+	$search_by = "subconscious mind";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>		
+		
 		<div class="col-md-3">
 			<div class="card">
-				<img src="img/body-langulage.jpeg" alt="card-1" class="card-img-top">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-					<h5>body-langulage</h5>
-					<h6>by Allan & Pease</h6>
-					<h6>$34.00</h6>
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 				</div>
 			</div>
 		</div>
-		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/subconscious-mind.jpeg" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5>subconscious mind</h5>
-					<h6>by DR. Jospeh Murphy</h6>
-					<h6>$34.00</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
-		
-		
-		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/the-power-of-habit.jpg" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5>the-power of habit</h5>
-					<h6>by Charles Duhigg</h6>
-					<h6>$34.00</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
+
 	</div>
 </div>
 
@@ -150,51 +231,79 @@ include("includes/header.php");
 
 <div class="container mt-5">
 	<div class="row">
+
+<?php
+	$search_by = "Harry Potter 1";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>	
 		<div class="col-md-3">
 			<div class="card">
-				<img src="img/HP-1.png" alt="card-1" class="card-img-top">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-					<h5>Harry Potter 1</h5>
-					<h6>by J. K. Rowling</h6>
-					<h6>$34.00</h6>
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+
+<?php
+	$search_by = "Harry Potter 2";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>	
+		<div class="col-md-3">
+			<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+				<div class="card-body">
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
+					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+				</div>
+			</div>
+		</div>
+
+<?php
+	$search_by = "Harry Potter 3";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>	
+		<div class="col-md-3">
+			<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+				<div class="card-body">
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 				</div>
 			</div>
 		</div>
 		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/HP-2.png" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5>Harry Potter 2</h5>
-					<h6>by J. K. Rowling</h6>
-					<h6>$34.00</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
+<?php
+	$search_by = "Harry Potter 4";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>			
 		
 		<div class="col-md-3">
 			<div class="card">
-				<img src="img/HP-3.png" alt="card-1" class="card-img-top">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-					<h5>Harry Potter 3</h5>
-					<h6>by J. K. Rowling</h6>
-					<h6>$34.00</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
-		
-		
-		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/HP-4.png" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5>Harry Potter 4</h5>
-					<h6>by J. K. Rowling</h6>
-					<h6>$34.00</h6>
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 				</div>
 			</div>
@@ -215,47 +324,80 @@ include("includes/header.php");
 
 <div class="container mt-5 pb-5">
 	<div class="row">
+
+<?php
+	$search_by = "c";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>
 		<div class="col-md-3">
 			<div class="card">
-			  <img src="img/programming/c.jpg" alt="card-1" class="card-img-top">
+			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-				  <h5>Black Shoes</h5>
-				  <h6>$34.00</h6>
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 			  </div>
 			</div>
 		</div>
 		
+<?php
+	$search_by = "c++";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>
+
 		<div class="col-md-3">
 			<div class="card">
-			  <img src="img/programming/c++.jpg" alt="card-1" class="card-img-top">
+			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-				  <h5>Red Shoes</h5>
-				  <h6>$34.00</h6>
+				<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 			  </div>
 			</div>
 		</div>
 		
+<?php
+	$search_by = "java";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>
 		<div class="col-md-3">
 			<div class="card">
-			  <img src="img/programming/c-sharp.jpeg" alt="card-1" class="card-img-top">
+			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-				  <h5>Modern Shoes</h5>
-				  <h6>$34.00</h6>
+				<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 			  </div>
 			</div>
 		</div>
 		
 		
-		
+<?php
+	$search_by = "c-sharp";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+?>		
 		<div class="col-md-3">
 			<div class="card">
-			  <img src="img/programming/java.jpg" alt="card-1" class="card-img-top">
+			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 				<div class="card-body">
-				  <h5>High Hill Shoes</h5>
-				  <h6>$34.00</h6>
+					<h5><?php echo $book_name; ?></h5>
+					<h6><?php echo "by ".$writer_name; ?></h6>
+					<h6><?php echo "$".$book_price; ?></h6>
 					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 			  </div>
 			</div>
@@ -280,7 +422,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/HP-4.png" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>FITT Belts</h5>
+						<h5>Harry Potter </h5>
 						<h6>$35.00</h6>
 						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -289,7 +431,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/programming/java.jpg" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Magnolia Dress</h5>
+						<h5>Harry Potter 2</h5>
 						<h6>$25.00</h6>
 						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -299,7 +441,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/HP-4.png" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Rocadi Jeans</h5>
+						<h5>Harry Potter 3</h5>
 						<h6>$75.00 <span style="text-decoration: line-through">$99.00</span></h6>
 						<button class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -311,7 +453,7 @@ include("includes/header.php");
 			
 			<div class="col-md-4">
 				<div class="row">
-					<h4>SCARFS</h4>
+					<h4>On SALE</h4>
 				</div>
 				<div class="row">
 					<div class="underline-blue"></div>
@@ -319,7 +461,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/HP-4.png" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Istwic Scarf</h5>
+						<h5>Harry Potter</h5>
 						<h6>$23.00</h6>
 						<button class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -328,7 +470,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/HP-4.png" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Jennifer Scarf</h5>
+						<h5>Harry Potter</h5>
 						<h6>$36.00</h6>
 						<button class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -337,7 +479,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/programming/java.jpg" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Andora Scarf</h5>
+						<h5>Harry Potter</h5>
 						<h6>$37.00</h6>
 						<button class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -356,7 +498,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/HP-4.png" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Marina Style</h5>
+						<h5>Harry Potter</h5>
 						<h6>$46.00</h6>
 						<button class="btn btn-dark"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -365,7 +507,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/programming/java.jpg" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Jennifer Scarf</h5>
+						<h5>Harry Potter</h5>
 						<h6>$36.00</h6>
 						<button class="btn btn-dark"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -374,7 +516,7 @@ include("includes/header.php");
 				<div class="media mt-5">
 					<img src="img/programming/java.jpg" class="img-fluid mr-3" alt="media1">
 					<div class="media-body mt-2">
-						<h5>Manago Shirt</h5>
+						<h5>Harry Potter</h5>
 						<h6>$25.00</h6>
 						<button class="btn btn-dark"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
 					</div>
@@ -387,201 +529,7 @@ include("includes/header.php");
 </div>
 
 
-<!-- ==> gray row container, need it for later -->
 
-<!-- <div class="container-fluid bg-light-gray pt-5 pb-5">
-
-<div class="container mt-0">
-	<div class="row">
-		<h4>FEATURED</h4>
-	</div>
-	<div class="row">
-		<div class="underline"></div>
-	</div>
-</div>
-
-<div class="container mt-5">
-	<div class="row">
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/pexels-photo-220449.jpeg" class="card-img-top">
-				<div class="card-body">
-					<h4>Black Shirt</h4>
-					<h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/pexels-photo-731794.jpeg" class="card-img-top">
-				<div class="card-body">
-					<h4>Black Shirt</h4>
-					<h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/pexels-photo-301279.jpeg" class="card-img-top">
-				<div class="card-body">
-					<h4>Black Shirt</h4>
-					<h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
-		
-		<div class="col-md-3">
-			<div class="card">
-				<img src="img/pexels-photo-245931.jpeg" class="card-img-top">
-				<div class="card-body">
-					<h4>Black Shirt</h4>
-					<h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-</div> -->
-
- <!-- <== gray row container ends here -->
-
-
-<!-- ==> blog starts -->
-
-<!-- 
-<div class="container mt-5">
-	<div class="row">
-		<h4>FROM THE BLOG</h4>
-	</div>
-	<div class="underline"></div>
-</div>
-
-
-<div class="container pb-5 blog">
- <div class="row">
- 	<div class="col-md-6">
- 		<div class="media mt-5">
-					<img src="img/b1.jpg" class="img-fluid mr-3" alt="media1">
-					<div class="media-body mt-2">
-						<h5>Jackets For The Soul. What…</h5>
-						<p>Lorem ipsum dolor sit amet.</p>
-						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
-					</div>
-				</div>
- 	</div>
- 	
- 	
- 	<div class="col-md-6">
- 		<div class="media mt-5">
-					<img src="img/b2.jpg" class="img-fluid mr-3" alt="media1">
-					<div class="media-body mt-2">
-						<h5>Long Legs? No Longer And…</h5>
-						<p>Lorem ipsum dolor sit amet.</p>
-						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
-					</div>
-				</div>
- 	</div>
- </div>
- 
- 
-  <div class="row">
- 	<div class="col-md-6">
- 		<div class="media mt-5">
-					<img src="img/b3.jpg" class="img-fluid mr-3" alt="media1">
-					<div class="media-body mt-2">
-						<h5>Latest Trends For Autumn Are…</h5>
-						<p>Lorem ipsum dolor sit amet.</p>
-						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
-					</div>
-				</div>
- 	</div>
- 	
- 	
- 	<div class="col-md-6">
- 		<div class="media mt-5">
-					<img src="img/b4.jpg" class="img-fluid mr-3" alt="media1">
-					<div class="media-body mt-2">
-						<h5>Best Fabrics For Your Dream…</h5>
-						<p>Lorem ipsum dolor sit amet.</p>
-						<p><i class="fa fa-user" aria-hidden="true"></i> admin. Date: 12-2-2018</p>
-					</div>
-				</div>
- 	</div>
- </div>
-	
-</div> -->
-
-<!-- <== blog ends -->
-
-
-<!-- ==> another row of content, dont need it -->
-
-<!-- <div class="container-fluid pt-5 pb-5 bg-light-gray">
-	<div class="container">
-		<div class="row">
-			<h4>TRENDS</h4>
-		</div>
-		<div class="row">
-			<div class="underline-blue"></div>
-		</div>
-	</div> -->
-	
-	<!-- <div class="container pt-5">
-		<div class="row">
-			<div class="col-md-3">
-				<div class="card">
-				  <img src="img/pexels-photo-247206.jpeg" alt="img" class="card-img-top">
-					<div class="card-body">
-					  <h4>Denim Shirt</h4>
-					  <h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				  </div>
-				</div>
-			</div>
-			
-			<div class="col-md-3">
-				<div class="card">
-				  <img src="img/pexels-photo-206454.jpeg" alt="img" class="card-img-top">
-					<div class="card-body">
-					  <h4>White Net</h4>
-					  <h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				  </div>
-				</div>
-			</div>
-			
-			<div class="col-md-3">
-				<div class="card">
-				  <img src="img/pexels-photo-245931.jpeg" alt="img" class="card-img-top">
-					<div class="card-body">
-					  <h4>Purple Bra</h4>
-					  <h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				  </div>
-				</div>
-			</div>
-			
-			<div class="col-md-3">
-				<div class="card">
-				  <img src="img/pexels-photo-206381.jpeg" alt="img" class="card-img-top">
-					<div class="card-body">
-					  <h4>Blue Skart</h4>
-					  <h6>$67.87</h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-				  </div>
-				</div>
-			</div>
-		</div>
-	</div> -->
-
-	<!-- <== another row ends here. -->
 
 </div>
 

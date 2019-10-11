@@ -1,9 +1,25 @@
 
 
 
+<?php include("includes/db.php");
+session_start();
+?>
 
+<?php
+        if(isset($_SESSION['email'])){
+          $user_email = $_SESSION['email'];
+        } else{
+          $user_email = 'someone@something.com';
+        }
 
+        if(isset($_SESSION['username'])){
+          $username = $_SESSION['username'];
+        } else{
+          $username = 'someone';
+        }
 
+        
+?>
 
 
 
@@ -24,12 +40,12 @@
 <div class="container-fluid bg-dark header-top d-none d-md-block">
   <div class="container">
     <div class="row text-light pt-2 pb-2">
-      <div class="col-md-5"><i class="fa fa-envelope-o" aria-hidden="true"></i> shahriarmoin.aust@gmail.com</div>
+      <div class="col-md-5"><i class="fa fa-envelope-o" aria-hidden="true"></i> <?php echo $user_email; ?></div>
       <div class="col-md-3">
         
       </div>
       
-      <div class="col-md-2"> <i class="fa fa-user-o" aria-hidden="true"></i> Account </div>
+      <div class="col-md-2"> <i class="fa fa-user-o" aria-hidden="true"></i>  <?php echo $username; ?></div>
       <div class="col-md-2"> <i class="fa fa-cart-plus" aria-hidden="true"></i> My Cart - $ 0.00</div>
     </div>
   </div>
@@ -45,48 +61,18 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <!-- <li class="nav-item active">
-        <a class="nav-link" href="#">Contact us <span class="sr-only">(current)</span></a>
-      </li> -->
 	  <li class="nav-item">
         <a class="nav-link" href="contuct_us.php">Contact Us</a>
       </li>
 	  <li class="nav-item">
         <a class="nav-link" href="about_us.php">About Us</a>
       </li>
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="login.php">Login</a>
-      </li> -->
-
-
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
-
-
-      <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#">Login</a>
-      </li> -->
     </ul>
 
-    <!-- <form class="form-inline my-2 my-lg-0" action="login.php">
-      <button class="btn btn-outline-primary my-2 my-sm-0">Login</button>
-    </form>
-
-	<form class="form-inline my-2 my-lg-0 pl-2" action="register.php">
-      <button class="btn btn-outline-warning my-2 my-sm-0">Register</button>
-    </form> -->
-    <form class="form-inline my-2 my-lg-0 pl-2" onclick="window.location.href = 'user_profile.php';">
+    <form class="form-inline my-2 my-lg-0 pl-2" onclick="window.location.href = 'logout.php';">
       <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>
     </form>
+
   </div>
 </nav>
 </div>
