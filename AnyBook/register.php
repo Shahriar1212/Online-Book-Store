@@ -25,6 +25,9 @@ if(isset($_POST['register-submit'])) {
 		$_SESSION['message'] = 'you are logged in successfully';
 		$_SESSION['username'] = $username;
 		$_SESSION['email'] = $email;
+		$_SESSION['phone'] = $row['phone'];
+		$_SESSION['status'] = $row['status'];
+		$_SESSION['status'] = 1;
 		header('location: user_profile.php');
 
 	} else {

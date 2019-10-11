@@ -61,6 +61,69 @@ if(isset($_SESSION['try-to-login-again'])) {
 ?>
 
 
+
+
+
+
+<!-- ===================================================================== -->
+<?php
+
+$product_ids = array();
+//session_destroy();
+
+if(filter_input(INPUT_POST, 'add_to_cart')) {
+	if(isset($_SESSION['shopping_cart'])) {
+		$count = count($_SESSION['shopping_cart']);
+		$product_ids = array_column($_SESSION['shopping_cart'], 'id');
+
+
+		if(!in_array(filter_input(INPUT_GET, 'id'), $product_ids)){
+			$_SESSION['shopping_cart'][$count] = array
+				(
+					'id' 		=> filter_input(INPUT_GET, 'id'),
+					'name' 		=> filter_input(INPUT_POST, 'name'),
+					'price' 	=> filter_input(INPUT_POST, 'price'),
+					'quantity'	=> filter_input(INPUT_POST, 'quantity')
+				);
+		} else {
+			for($i=0; $i < count($product_ids); $i++){
+				if($product_ids[$i] == filter_input(INPUT_GET, 'id')){
+					$_SESSION['shopping_cart'][$i]['quantity'] += filter_input(INPUT_POST, 'quantity');
+				}
+			}
+		}
+
+
+	}
+	else {
+		$_SESSION['shopping_cart'][0] = array
+		(
+			'id' 		=> filter_input(INPUT_GET, 'id'),
+			'name'	 	=> filter_input(INPUT_POST, 'name'),
+			'price' 	=> filter_input(INPUT_POST, 'price'),
+			'quantity' 	=> filter_input(INPUT_POST, 'quantity')
+		);
+	}
+}
+// echo "<pre>";
+// print_r($_SESSION);
+// echo "</pre>";
+
+//pre_r($_SESSION);
+
+function pre_r($array){
+	echo "<pre>";
+	print_r($array);
+	echo "</pre>";
+}
+
+?>
+<!-- ======================================================================== -->
+
+
+
+
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -72,7 +135,7 @@ if(isset($_SESSION['try-to-login-again'])) {
        <div class="carousel-caption d-none d-md-block">
         <h1>BEST BOOK COLLECTION</h1>
          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-         <button class="btn btn-info btn-lg">Shop Now</button>
+         <!-- <button class="btn btn-info btn-lg">Shop Now</button> -->
        </div>
     </div>
     <div class="carousel-item">
@@ -80,7 +143,7 @@ if(isset($_SESSION['try-to-login-again'])) {
       <div class="carousel-caption d-none d-md-block">
         <h1>BEST BOOK COLLECTION</h1>
          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-         <button class="btn btn-info btn-lg">Shop Now</button>
+         <!-- <button class="btn btn-info btn-lg">Shop Now</button> -->
        </div>
     </div>
     
@@ -139,40 +202,61 @@ if(isset($_SESSION['try-to-login-again'])) {
 	<div class="row">
 
 <?php
-	$img_path 		= get_img_path("Motivate Others");
-	$book_name 		= get_book_name("Motivate Others");
-	$writer_name 	= get_writer_name("Motivate Others");
-	$book_price 	= get_book_price("Motivate Others");
-	$book_id		= get_book_id("Motivate Others");
+	$search_by = "Motivate Others";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>	
 
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 <?php
-	$img_path 		= get_img_path("body-langulage");
-	$book_name 		= get_book_name("body-langulage");
-	$writer_name 	= get_writer_name("body-langulage");
-	$book_price 	= get_book_price("body-langulage");
+	$search_by = "body-langulage";
+	$img_path 		= get_img_path($search_by);
+	$book_name 		= get_book_name($search_by);
+	$writer_name 	= get_writer_name($search_by);
+	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>		
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+						
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 <?php
 	$search_by = "the-power of habit";
@@ -180,17 +264,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>		
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+						
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		
 <?php
@@ -199,21 +294,38 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>		
 		
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+						
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 
 	</div>
+
+
+	<!-- =================================== cart test ============================= -->
+	
+	<!-- ==================================== cart test end ============================= -->
+	
 </div>
 
 
@@ -238,17 +350,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>	
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 
 <?php
@@ -257,17 +380,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>	
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 
 <?php
@@ -276,17 +410,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>	
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		
 <?php
@@ -295,18 +440,29 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>			
 		
 		<div class="col-md-3">
-			<div class="card">
-				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -331,17 +487,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>
 		<div class="col-md-3">
-			<div class="card">
-			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-			  </div>
-			</div>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+						
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
+				</div>
+			</form>
 		</div>
 		
 <?php
@@ -350,18 +517,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>
 
 		<div class="col-md-3">
-			<div class="card">
-			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-				<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-			  </div>
-			</div>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+					<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
+				</div>
+			</form>
 		</div>
 		
 <?php
@@ -370,17 +547,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>
 		<div class="col-md-3">
-			<div class="card">
-			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-				<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-			  </div>
-			</div>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+					<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+						
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
+				</div>
+			</form>
 		</div>
 		
 		
@@ -390,17 +578,28 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
 	$book_price 	= get_book_price($search_by);
+	$book_id		= get_book_id($search_by);
 ?>		
 		<div class="col-md-3">
-			<div class="card">
-			  <img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
-				<div class="card-body">
-					<h5><?php echo $book_name; ?></h5>
-					<h6><?php echo "by ".$writer_name; ?></h6>
-					<h6><?php echo "$".$book_price; ?></h6>
-					<button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button>
-			  </div>
-			</div>
+			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+				<div class="card">
+				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
+					<div class="card-body">
+						<h5><?php echo $book_name; ?></h5>
+						<h6><?php echo "by ".$writer_name; ?></h6>
+						<h6><?php echo "$".$book_price; ?></h6>
+						
+
+						<input type="hidden" name="quantity" clas="form-control" value="1" />
+						<input type="hidden" name="name" value="<?php echo $book_name; ?>" />
+						<input type="hidden" name="price" value="<?php echo $book_price; ?>" />
+						<!-- <input type="hidden" name="name" value="<?php echo $book_name; ?>" /> -->
+
+						<!-- <button class="btn btn-danger"><i class="fa fa-cart-plus" aria-hidden="true"></i> Add To Cart</button> -->
+						<input type="submit" name='add_to_cart' class="btn btn-info" value="Add to Cart" />
+					</div>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>
@@ -408,7 +607,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 
 <!-- </div> -->
 
-
+<!-- 
 <div class="container-fluid pt-5 pb-5">
 	<div class="container">
 		<div class="row">
@@ -526,7 +725,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	</div>
 	
 	
-</div>
+</div> -->
 
 
 

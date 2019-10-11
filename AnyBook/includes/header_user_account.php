@@ -69,7 +69,7 @@ session_start();
       </li>
     </ul>
 
-    <form class="form-inline my-2 my-lg-0 pl-2" onclick="window.location.href = 'logout.php';">
+    <form class="form-inline my-2 my-lg-0 pl-2" action="logout.php">
       <button class="btn btn-outline-danger my-2 my-sm-0" >Logout</button>
     </form>
 

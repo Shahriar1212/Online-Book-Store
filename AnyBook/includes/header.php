@@ -17,6 +17,15 @@
           $username = 'someone';
         }
 
+        if(isset($_SESSION['total_money'])){
+
+        } else {
+          $_SESSION['total_money'] = 0;
+        }
+
+
+        
+
         
 ?>
 
@@ -48,7 +57,7 @@
       </div>
       
       <div class="col-md-2"> <a href="user_profile.php"><i class="fa fa-user-o" aria-hidden="true"></i></a><?php echo $username; ?></div>
-      <div class="col-md-2"> <i class="fa fa-cart-plus" aria-hidden="true"></i> My Cart - $ 0.00</div>
+      <div class="col-md-2"> <i class="fa fa-cart-plus" aria-hidden="true"></i><a href="order_cart.php"> My Cart - <?php echo $_SESSION['total_money']; ?></a></div>
     </div>
   </div>
 </div>

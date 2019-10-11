@@ -38,7 +38,11 @@
                     <p><?php echo $_SESSION['email']; ?></p>
                  </div>
                  <div class="data">
-                    <a href="logout.php"> Logout </a>
+                    <!-- <a href="logout.php"> Logout </a> -->
+
+                    <form action="logout.php">
+                    <input type="submit" name='logout' class="btn btn-danger" value="Logout" />
+                    </form>
                  </div>
             </div>
         </div>
