@@ -1,4 +1,5 @@
 <?php
+$title = "Login";
 include("includes/db.php");
 session_start();
 ?>
@@ -9,7 +10,7 @@ session_start();
 	// if a user is logged in and try to login again then he will redirect to homepage and give an alert
 	if(isset($_SESSION['username'])){
 		$_SESSION['try-to-login-again'] = true;
-		//header("location: index.php");
+		header("location: index.php");
 	}
 
 
@@ -52,7 +53,7 @@ session_start();
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Book Store</a>
+          <a class="navbar-brand" href="index.php">Any Book</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">

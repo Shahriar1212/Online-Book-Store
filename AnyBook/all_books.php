@@ -1,63 +1,12 @@
 <?php
 session_start();
+$title = "All Books";
 include("includes/header.php");
 include("includes/db.php");
 ?>
 
 
-<?php
 
-$product_ids = array();
-//session_destroy();
-//session_destroy();
-if(filter_input(INPUT_POST, 'add_to_cart')) {
-    if(isset($_SESSION['shopping_cart'])) {
-        $count = count($_SESSION['shopping_cart']);
-        $product_ids = array_column($_SESSION['shopping_cart'], 'id');
-
-
-        if(!in_array(filter_input(INPUT_GET, 'id'), $product_ids)){
-            $_SESSION['shopping_cart'][$count] = array
-                (
-                    'id'        => filter_input(INPUT_GET, 'id'),
-                    'name'      => filter_input(INPUT_POST, 'name'),
-                    'price'     => filter_input(INPUT_POST, 'price'),
-                    'quantity'  => filter_input(INPUT_POST, 'quantity')
-                );
-        } else {
-            for($i=0; $i < count($product_ids); $i++){
-                if($product_ids[$i] == filter_input(INPUT_GET, 'id')){
-                    $_SESSION['shopping_cart'][$i]['quantity'] += filter_input(INPUT_POST, 'quantity');
-                }
-            }
-        }
-
-
-    }
-    else {
-        $_SESSION['shopping_cart'][0] = array
-        (
-            'id'        => filter_input(INPUT_GET, 'id'),
-            'name'      => filter_input(INPUT_POST, 'name'),
-            'price'     => filter_input(INPUT_POST, 'price'),
-            'quantity'  => filter_input(INPUT_POST, 'quantity')
-        );
-    }
-}
-// echo "<pre>";
-// print_r($_SESSION);
-// echo "</pre>";
-
-//pre_r($_SESSION);
-
-function pre_r($array){
-    echo "<pre>";
-    print_r($array);
-    echo "</pre>";
-}
-
-
-?>
 
 
 
@@ -80,11 +29,39 @@ function pre_r($array){
 }
 </style>
 
+
+<?php
+    if(isset($_POST['search'])){
+        $search_by = $_POST['search_by'];
+        // $search_by = "%".$search_by."%";
+        //echo $_POST['search_by'];
+    } else {
+        $search_by = "%";
+    }
+ ?>
+
 <div class="container mt-2">
+
+    <div class="row">
+        <div class="col-md-12">
+            <form action="all_books.php" method="post">
+                <input type="text" name="search_by">
+                <input type="submit" name="search" class="btn btn-info" value="search" >
+            </form>
+        </div>
+        
+    </div>
 <div class="row">
+
     
     <?php 
-    $sql = "SELECT * FROM book";
+    if($search_by == ''){
+        $sql = "SELECT * FROM book";
+    } else {
+        $sql = "SELECT * FROM book WHERE book_name LIKE '%".$search_by." %'";
+    }
+    
+    
     $result = mysqli_query($db,$sql);
 
     if($result){
@@ -93,7 +70,7 @@ function pre_r($array){
                 ?>
                     
                 <div class="col-sm-4 col-md-3 mt-2">
-                    <form method="post" action="all_books.php?action=add&id=<?php echo $product['book_id']; ?>">
+                    <form method="post" action="actions/add2.php?action=add&id=<?php echo $product['book_id']; ?>">
                         <div class="cart">
                             <div class="products">
                                 <img src="<?php echo $product['path']; ?>" class="img-fluid" alt="">
@@ -122,3 +99,12 @@ function pre_r($array){
 
 </div>
 </div>
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>

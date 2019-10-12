@@ -1,6 +1,7 @@
 
 <?php 
 session_start();
+$title = "Home";
 include("includes/header.php");
 
 if(isset($_SESSION['try-to-login-again'])) {
@@ -66,58 +67,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 
 
 <!-- ===================================================================== -->
-<?php
-
-$product_ids = array();
-//session_destroy();
-
-if(filter_input(INPUT_POST, 'add_to_cart')) {
-	if(isset($_SESSION['shopping_cart'])) {
-		$count = count($_SESSION['shopping_cart']);
-		$product_ids = array_column($_SESSION['shopping_cart'], 'id');
-
-
-		if(!in_array(filter_input(INPUT_GET, 'id'), $product_ids)){
-			$_SESSION['shopping_cart'][$count] = array
-				(
-					'id' 		=> filter_input(INPUT_GET, 'id'),
-					'name' 		=> filter_input(INPUT_POST, 'name'),
-					'price' 	=> filter_input(INPUT_POST, 'price'),
-					'quantity'	=> filter_input(INPUT_POST, 'quantity')
-				);
-		} else {
-			for($i=0; $i < count($product_ids); $i++){
-				if($product_ids[$i] == filter_input(INPUT_GET, 'id')){
-					$_SESSION['shopping_cart'][$i]['quantity'] += filter_input(INPUT_POST, 'quantity');
-				}
-			}
-		}
-
-
-	}
-	else {
-		$_SESSION['shopping_cart'][0] = array
-		(
-			'id' 		=> filter_input(INPUT_GET, 'id'),
-			'name'	 	=> filter_input(INPUT_POST, 'name'),
-			'price' 	=> filter_input(INPUT_POST, 'price'),
-			'quantity' 	=> filter_input(INPUT_POST, 'quantity')
-		);
-	}
-}
-// echo "<pre>";
-// print_r($_SESSION);
-// echo "</pre>";
-
-//pre_r($_SESSION);
-
-function pre_r($array){
-	echo "<pre>";
-	print_r($array);
-	echo "</pre>";
-}
-
-?>
+				<!-- add code -->
 <!-- ======================================================================== -->
 
 
@@ -211,7 +161,7 @@ function pre_r($array){
 ?>	
 
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -231,7 +181,7 @@ function pre_r($array){
 			</form>
 		</div>
 <?php
-	$search_by = "body-langulage";
+	$search_by = "Body Language";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -239,7 +189,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>		
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -259,7 +209,7 @@ function pre_r($array){
 			</form>
 		</div>
 <?php
-	$search_by = "the-power of habit";
+	$search_by = "The Power of Habit";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -267,7 +217,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>		
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -289,7 +239,7 @@ function pre_r($array){
 		</div>
 		
 <?php
-	$search_by = "subconscious mind";
+	$search_by = "Subconscious Mind";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -298,7 +248,7 @@ function pre_r($array){
 ?>		
 		
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -353,7 +303,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>	
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -383,7 +333,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>	
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -413,7 +363,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>	
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -444,7 +394,7 @@ function pre_r($array){
 ?>			
 		
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -482,7 +432,7 @@ function pre_r($array){
 	<div class="row">
 
 <?php
-	$search_by = "c";
+	$search_by = "Teach yourself c";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -490,7 +440,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -512,7 +462,7 @@ function pre_r($array){
 		</div>
 		
 <?php
-	$search_by = "c++";
+	$search_by = "C plus plus";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -521,7 +471,7 @@ function pre_r($array){
 ?>
 
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -542,7 +492,7 @@ function pre_r($array){
 		</div>
 		
 <?php
-	$search_by = "java";
+	$search_by = "java the complete ref";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -550,7 +500,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">
@@ -573,7 +523,7 @@ function pre_r($array){
 		
 		
 <?php
-	$search_by = "c-sharp";
+	$search_by = "C sharp";
 	$img_path 		= get_img_path($search_by);
 	$book_name 		= get_book_name($search_by);
 	$writer_name 	= get_writer_name($search_by);
@@ -581,7 +531,7 @@ function pre_r($array){
 	$book_id		= get_book_id($search_by);
 ?>		
 		<div class="col-md-3">
-			<form method="post" action="index.php?action=add&id=<?php echo $book_id; ?>">
+			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
 					<div class="card-body">

@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+$title = "Orders";
 include("includes/header.php");
 include("includes/db.php");
 ?>
@@ -10,17 +11,7 @@ include("includes/db.php");
 
 
 
-<?php
-	if(filter_input(INPUT_GET, 'action') == 'delete'){
-		foreach($_SESSION['shopping_cart'] as $key => $product){
-			if($product['id'] == filter_input(INPUT_GET, 'id')){
-				unset($_SESSION['shopping_cart'][$key]);
-			}
-		}
 
-		$_SESSION['shopping_cart'] = array_values($_SESSION['shopping_cart']);
-	}
-?>
 
 
 
@@ -62,7 +53,7 @@ include("includes/db.php");
 					<td>$ <?php echo $product['price']; ?></td>
 					<td><?php echo number_format($product['quantity'] * $product['price'], 2); ?></td>
 					<td>
-						<a href="order_cart.php?action=delete&id=<?php echo $product['id']; ?>">
+						<a href="actions/delete_cart.php?action=delete&id=<?php echo $product['id']; ?>">
 							<div class="btn-danger">Remove</div>
 						</a>
 					</td>

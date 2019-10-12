@@ -1,5 +1,8 @@
 
-<?php include("includes/header_user_account.php");
+<?php
+    session_start();
+    $title = $_SESSION['username'];
+    include("includes/header_user_account.php");
 ?>
 
 

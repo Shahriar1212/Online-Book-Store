@@ -1,8 +1,9 @@
 
 
 
-<?php include("includes/db.php");
-session_start();
+<?php 
+  include("includes/db.php");
+
 ?>
 
 <?php
@@ -33,7 +34,7 @@ session_start();
 <link rel="stylesheet" href="css/custom.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<title>Book Lovers</title>
+<title><?php echo $title; ?></title>
 </head>
 
 <body>
@@ -54,7 +55,7 @@ session_start();
 
 <div class="container-fluid bg-black">
   <nav class="container navbar navbar-expand-lg navbar-dark bg-black">
-  <a class="navbar-brand" href="index.php">Book Store</a>
+  <a class="navbar-brand" href="index.php">Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

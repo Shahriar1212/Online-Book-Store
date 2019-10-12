@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2019 at 01:45 PM
+-- Generation Time: Oct 12, 2019 at 10:23 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -44,24 +44,24 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `book_name`, `writer_name`, `path`, `book_price`, `on_sale`, `best_seller`, `book_description`) VALUES
-(1, 'c', 'Herbert Schildt', 'img/programming/c.jpg', 34.99, 0, 0, 'One of the most best book to learn c programming'),
-(2, 'c++', 'Herbert Schildt', 'img/programming/c++.jpg', 49.99, 0, 0, 'one of the best book to learn c++'),
-(3, 'c-sharp ', 'Herbert Schildt', 'img/programming/c-sharp.jpeg', 39.99, 0, 0, 'one of the best book to learn c sharp'),
-(4, 'java', 'Herbert Schildt', 'img/programming/java.jpg', 49.99, 0, 0, 'one of the best book to learn java'),
-(5, 'body-langulage', 'Allan & Pease', 'img/body-langulage.jpeg', 29.99, 0, 0, 'alkdjf akdjfakl fakjdlkajdklfjaldskfj'),
+(1, 'Teach yourself c', 'Herbert Schildt', 'img/programming/c.jpg', 34.99, 0, 0, 'One of the most best book to learn c programming'),
+(2, 'C plus plus', 'Herbert Schildt', 'img/programming/c++.jpg', 49.99, 0, 0, 'one of the best book to learn c++'),
+(3, 'C sharp ', 'Herbert Schildt', 'img/programming/c-sharp.jpeg', 39.99, 0, 0, 'one of the best book to learn c sharp'),
+(4, 'java the complete ref', 'Herbert Schildt', 'img/programming/java.jpg', 49.99, 0, 0, 'one of the best book to learn java'),
+(5, 'Body Language', 'Allan & Pease', 'img/body-langulage.jpeg', 29.99, 0, 1, 'alkdjf akdjfakl fakjdlkajdklfjaldskfj'),
 (6, 'Harry Potter 1', 'J. K. Rowling', 'img/hp-1.png', 29.99, 0, 0, 'Best seller book'),
 (7, 'Harry Potter 2', 'J. K. Rowling', 'img/hp-2.png', 29.99, 0, 0, 'Best seller book'),
 (8, 'Harry Potter 3', 'J. K. Rowling', 'img/HP-3.png', 29.99, 0, 0, 'Best seller book'),
 (9, 'Harry Potter 4', 'J. K. Rowling', 'img/HP-4.png', 29.99, 0, 0, ''),
 (10, 'Motivate Others', 'steve chandler', 'img/100-ways-motivate-others.jpg', 25.99, 1, 1, ''),
-(11, 'subconscious mind', 'DR. Jospeh Murphy', 'img/subconscious-mind.jpeg', 25.5, 1, 1, ''),
-(12, 'the-power of habit', 'Charles Duhigg', 'img/the-power-of-habit.jpg', 29.99, 0, 1, ''),
+(11, 'Subconscious Mind', 'DR. Jospeh Murphy', 'img/subconscious-mind.jpeg', 25.5, 1, 1, ''),
+(12, 'The Power of Habit', 'Charles Duhigg', 'img/the-power-of-habit.jpg', 29.99, 0, 1, ''),
 (14, 'Harry Potter 5', 'J. K. Rowling', 'img/HP-5.png', 25, 0, 0, 'some description about the book'),
 (15, 'Harry Potter 6', 'J. K. Rowling', 'img/HP-6.png', 26.99, 0, 0, 'some description about the book'),
 (16, 'Harry Potter 7', 'J. K. Rowling', 'img/HP-7.png', 25.99, 0, 0, 'some description about the book'),
 (17, 'Harry Potter 8', 'J. K. Rowling', 'img/HP-8.png', 25.99, 0, 0, 'some description about the book'),
 (18, '???????? ???? ???????????', '????? ??????', 'img/hablu.jpg', 25.99, 0, 0, 'something about the book'),
-(19, 'How to Win Friends and Influence People', '??? ???????? ', 'img/how-to-win.jpg', 39.55, 0, 0, 'something about the book');
+(19, 'How to Win Friends and Influence People', '??? ???????? ', 'img/how-to-win.jpg', 39.55, 0, 1, 'something about the book');
 
 -- --------------------------------------------------------
 
@@ -161,7 +161,10 @@ INSERT INTO `order_table` (`order_id`, `userID`, `username`, `book_id`, `book_na
 (37, 13, 'shahriar_moin', 1, 'c', 34.99, 1, 34.99, '2019-10-12 05:04:48'),
 (38, 13, 'shahriar_moin', 2, 'c++', 49.99, 1, 49.99, '2019-10-12 05:06:14'),
 (39, 13, 'shahriar_moin', 4, 'java', 49.99, 1, 49.99, '2019-10-12 05:06:14'),
-(40, 13, 'shahriar_moin', 1, 'c', 34.99, 1, 34.99, '2019-10-12 05:09:03');
+(40, 13, 'shahriar_moin', 1, 'c', 34.99, 1, 34.99, '2019-10-12 05:09:03'),
+(41, 11, 'moin', 19, 'How to Win Friends and Influence People', 39.55, 1, 39.55, '2019-10-12 17:49:28'),
+(42, 0, 'tasmiyah_tisha', 2, 'C plus plus', 49.99, 1, 49.99, '2019-10-13 01:00:50'),
+(43, 0, 'tasmiyah_tisha', 3, 'C sharp ', 39.99, 1, 39.99, '2019-10-13 01:00:50');
 
 -- --------------------------------------------------------
 
@@ -201,7 +204,9 @@ INSERT INTO `order_table1` (`order_id`, `userID`, `username`, `order_json`, `ord
 (17, 13, 'shahriar_moin', '[{\"id\":\"5\",\"name\":\"body-langulage\",\"price\":\"29.99\",\"quantity\":\"1\"},{\"id\":\"12\",\"name\":\"the-power of habit\",\"price\":\"29.99\",\"quantity\":\"1\"},{\"id\":\"11\",\"name\":\"subconscious mind\",\"price\":\"25.5\",\"quantity\":\"1\"}]', '2019-10-12 05:03:14'),
 (18, 13, 'shahriar_moin', '[{\"id\":\"7\",\"name\":\"Harry Potter 2\",\"price\":\"29.99\",\"quantity\":\"1\"},{\"id\":\"12\",\"name\":\"the-power of habit\",\"price\":\"29.99\",\"quantity\":\"1\"},{\"id\":\"1\",\"name\":\"c\",\"price\":\"34.99\",\"quantity\":\"1\"}]', '2019-10-12 05:04:48'),
 (19, 13, 'shahriar_moin', '[{\"id\":\"2\",\"name\":\"c++\",\"price\":\"49.99\",\"quantity\":\"1\"},{\"id\":\"4\",\"name\":\"java\",\"price\":\"49.99\",\"quantity\":\"1\"}]', '2019-10-12 05:06:14'),
-(20, 13, 'shahriar_moin', '[{\"id\":\"1\",\"name\":\"c\",\"price\":\"34.99\",\"quantity\":\"1\"}]', '2019-10-12 05:09:03');
+(20, 13, 'shahriar_moin', '[{\"id\":\"1\",\"name\":\"c\",\"price\":\"34.99\",\"quantity\":\"1\"}]', '2019-10-12 05:09:03'),
+(21, 11, 'moin', '[{\"id\":\"19\",\"name\":\"How to Win Friends and Influence People\",\"price\":\"39.55\",\"quantity\":\"1\"}]', '2019-10-12 17:49:28'),
+(22, 0, 'tasmiyah_tisha', '[{\"id\":\"2\",\"name\":\"C plus plus\",\"price\":\"49.99\",\"quantity\":\"1\"},{\"id\":\"3\",\"name\":\"C sharp \",\"price\":\"39.99\",\"quantity\":\"1\"}]', '2019-10-13 01:00:50');
 
 -- --------------------------------------------------------
 
@@ -224,12 +229,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `email`, `phone`, `password`, `created_date`, `status`) VALUES
-(11, 'moin', 'moin@gmail.com', '1521429409', '06a998cdd13c50b7875775d4e7e9fa74', '2019-10-08 12:25:32', 1),
-(12, 'shahriar', 'shahriar@gmail.com', '1521429409', '3ca31dfb8c0b68860facc2fa2a83265d', '2019-10-08 12:33:18', 1),
-(13, 'shahriar_moin', 'shahriarmoin.aust@gmail.com', '1719313097', '1f7f356811c769a4c073eee05731a474', '2019-10-11 02:24:02', 1),
-(14, 'tisha', 'tisha@gmail.com', '1618659856', '05e1ae75ec96e66511116a280ddee34e', '2019-10-11 18:55:50', 1),
-(15, 'rishad', 'rishad@gmail.com', '1716352579', '5fbbe5479b7340f68dc1814e0ab87bf7', '2019-10-12 04:45:10', 1),
-(16, 'sadia', 'sadia@gmail.com', '1524396585', '91b5cd208feabcc9b01cd14b7e4e83ad', '2019-10-12 04:50:16', 1);
+(24, 'shahriar_moin', 'shahriarmoin.aust@gmail.com', '1521429409', '1f7f356811c769a4c073eee05731a474', '2019-10-12 22:09:17', 1),
+(25, 'moin', 'moin@gmail.com', '1521429409', '06a998cdd13c50b7875775d4e7e9fa74', '2019-10-12 23:36:20', 1),
+(32, 'moin', 'moin@gmail.com', '1521429409', '6f8f57715090da2632453988d9a1501b', '2019-10-12 23:46:51', 1),
+(33, 'tasmiyah_tisha', 'tisha@gmail.com', '1620233917', '05e1ae75ec96e66511116a280ddee34e', '2019-10-12 23:49:07', 1);
 
 --
 -- Indexes for dumped tables
@@ -285,7 +288,7 @@ ALTER TABLE `book`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `order`
@@ -297,19 +300,19 @@ ALTER TABLE `order`
 -- AUTO_INCREMENT for table `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `order_table1`
 --
 ALTER TABLE `order_table1`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

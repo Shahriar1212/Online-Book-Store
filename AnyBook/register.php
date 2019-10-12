@@ -1,13 +1,14 @@
 <?php 
 
 //session_start();
+$title = "Registration";
 include("includes/db.php");
 
 if(isset($_POST['register-submit'])) {
 	session_start();
 
 	$username 		= htmlspecialchars(stripslashes(trim($_POST['username'])));
-	$email 			= htmlspecialchars(stripslashes(trim($_POST['email'])));
+	$email 			= $_POST['email'];
 	$phone 			= htmlspecialchars(stripslashes(trim($_POST['phone'])));
 	$password 		= htmlspecialchars(stripslashes(trim($_POST['password'])));
 	$confirm 		= htmlspecialchars(stripslashes(trim($_POST['confirm_password'])));
@@ -21,7 +22,7 @@ if(isset($_POST['register-submit'])) {
 		$sql = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('$username', '$email', $phone, '$password', '$currentTime', '$status')";
 		//$sqlInsert = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('".$username."', '".$email.'",'".$password.'",'".$currentTime.'",'".$status.'")";
 
-		mysqli_query($db, $sql);
+		$row = mysqli_query($db, $sql);
 		$_SESSION['message'] = 'you are logged in successfully';
 		$_SESSION['username'] = $username;
 		$_SESSION['email'] = $email;
@@ -84,7 +85,7 @@ if(isset($_POST['register-submit'])) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.php">Book Store</a>
+          <a class="navbar-brand" href="index.php">Any Book</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
