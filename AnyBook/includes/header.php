@@ -56,8 +56,9 @@
         
       </div>
       
-      <div class="col-md-2"> <a href="user_profile.php"><i class="fa fa-user-o" aria-hidden="true"></i></a><?php echo $username; ?></div>
-      <div class="col-md-2"> <i class="fa fa-cart-plus" aria-hidden="true"></i><a href="order_cart.php"> My Cart - <?php echo $_SESSION['total_money']; ?></a></div>
+      <div class="col-md-2"> <a href="user_profile.php"><i class="fa fa-user-o" aria-hidden="true"></i><?php echo $username; ?></a></div>
+
+      <div class="col-md-2"> <a href="order_cart.php"> <i class="fa fa-cart-plus" aria-hidden="true"></i> My Cart </a></div>
     </div>
   </div>
 </div>
@@ -77,6 +78,9 @@
       </li>
       <li class="nav-item">
           <a class="nav-link" href="about_us.php">About Us</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="all_books.php">All Books</a>
       </li>
     </ul>
 

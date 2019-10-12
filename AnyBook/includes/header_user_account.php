@@ -61,11 +61,14 @@ session_start();
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-	  <li class="nav-item">
+	    <li class="nav-item">
         <a class="nav-link" href="contuct_us.php">Contact Us</a>
       </li>
-	  <li class="nav-item">
+	    <li class="nav-item">
         <a class="nav-link" href="about_us.php">About Us</a>
+      </li>
+      <li class="nav-item">
+          <a class="nav-link" href="all_books.php">All Books</a>
       </li>
     </ul>
 

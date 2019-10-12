@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2019 at 01:09 AM
+-- Generation Time: Oct 12, 2019 at 01:45 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -55,7 +55,13 @@ INSERT INTO `book` (`book_id`, `book_name`, `writer_name`, `path`, `book_price`,
 (9, 'Harry Potter 4', 'J. K. Rowling', 'img/HP-4.png', 29.99, 0, 0, ''),
 (10, 'Motivate Others', 'steve chandler', 'img/100-ways-motivate-others.jpg', 25.99, 1, 1, ''),
 (11, 'subconscious mind', 'DR. Jospeh Murphy', 'img/subconscious-mind.jpeg', 25.5, 1, 1, ''),
-(12, 'the-power of habit', 'Charles Duhigg', 'img/the-power-of-habit.jpg', 29.99, 0, 1, '');
+(12, 'the-power of habit', 'Charles Duhigg', 'img/the-power-of-habit.jpg', 29.99, 0, 1, ''),
+(14, 'Harry Potter 5', 'J. K. Rowling', 'img/HP-5.png', 25, 0, 0, 'some description about the book'),
+(15, 'Harry Potter 6', 'J. K. Rowling', 'img/HP-6.png', 26.99, 0, 0, 'some description about the book'),
+(16, 'Harry Potter 7', 'J. K. Rowling', 'img/HP-7.png', 25.99, 0, 0, 'some description about the book'),
+(17, 'Harry Potter 8', 'J. K. Rowling', 'img/HP-8.png', 25.99, 0, 0, 'some description about the book'),
+(18, '???????? ???? ???????????', '????? ??????', 'img/hablu.jpg', 25.99, 0, 0, 'something about the book'),
+(19, 'How to Win Friends and Influence People', '??? ???????? ', 'img/how-to-win.jpg', 39.55, 0, 0, 'something about the book');
 
 -- --------------------------------------------------------
 
@@ -273,7 +279,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `feedback`

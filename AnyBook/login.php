@@ -9,7 +9,7 @@ session_start();
 	// if a user is logged in and try to login again then he will redirect to homepage and give an alert
 	if(isset($_SESSION['username'])){
 		$_SESSION['try-to-login-again'] = true;
-		header("location: index.php");
+		//header("location: index.php");
 	}
 
 
@@ -58,6 +58,7 @@ session_start();
           <ul class="nav navbar-nav">
             <li><a href="contuct_us.php">Contuct Us</a></li>
             <li><a href="about_us.php">About Us</a></li>
+            <li><a href="all_books.php">All Books</a></li>
           </ul>
 
 		  <ul class="nav navbar-nav navbar-right">

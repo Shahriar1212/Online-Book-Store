@@ -18,10 +18,10 @@
 
 <link rel="stylesheet" href="css/user_profile_style.css">
 
-<div>
+<div style="background-color: #E4E4E4;">
  <div class="wrapper my_wrapper">
     <div class="left">
-        <img src="img/test.png" width="180" height="200">
+        <img src="img/dp.jpg" width="180" height="200">
         <h4><?php echo $_SESSION['username']; ?></h4>
         
     </div>
