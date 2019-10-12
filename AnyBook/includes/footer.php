@@ -60,8 +60,8 @@
   <!-- Footer Elements -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3"><p style="color: white">© 2018 Copyright:</p>
-    <a href="https://mdbootstrap.com/education/bootstrap/" style="color: white"> AUST</a>
+  <div class="footer-copyright text-center py-3"><p style="color: white">© 2019 Copyright:</p>
+    <a href="http://www.aust.edu/index.htm" style="color: white"> AUST</a>
   </div>
   <!-- Copyright -->
 

@@ -84,7 +84,7 @@ if(isset($_SESSION['try-to-login-again'])) {
       <img class="d-block w-100" src="img/library.png" alt="img1">
        <div class="carousel-caption d-none d-md-block">
         <h1>BEST BOOK COLLECTION</h1>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+         <p>A good bookshop is just a gentle Black Hole that knows how to read</p>
          <!-- <button class="btn btn-info btn-lg">Shop Now</button> -->
        </div>
     </div>
@@ -92,7 +92,7 @@ if(isset($_SESSION['try-to-login-again'])) {
       <img class="d-block w-100" src="img/book.png" alt="Second slide">
       <div class="carousel-caption d-none d-md-block">
         <h1>BEST BOOK COLLECTION</h1>
-         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+         <p>Books, The only thing you can Buy, that makes you Richer</p>
          <!-- <button class="btn btn-info btn-lg">Shop Now</button> -->
        </div>
     </div>
