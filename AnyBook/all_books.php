@@ -69,7 +69,7 @@ include("includes/db.php");
             while($product = mysqli_fetch_assoc($result)){
                 ?>
                     
-                <div class="col-sm-4 col-md-3 mt-2">
+                <div class="col-sm-6 col-md-3 mt-2">
                     <form method="post" action="actions/add2.php?action=add&id=<?php echo $product['book_id']; ?>">
                         <div class="cart">
                             <div class="products">

@@ -160,7 +160,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_id		= get_book_id($search_by);
 ?>	
 
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -188,7 +188,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>		
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -216,7 +216,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>		
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -247,7 +247,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_id		= get_book_id($search_by);
 ?>		
 		
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -302,7 +302,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>	
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -332,7 +332,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>	
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -362,7 +362,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>	
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -393,7 +393,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_id		= get_book_id($search_by);
 ?>			
 		
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 					<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -439,7 +439,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -470,7 +470,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_id		= get_book_id($search_by);
 ?>
 
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -499,7 +499,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
@@ -530,7 +530,7 @@ if(isset($_SESSION['try-to-login-again'])) {
 	$book_price 	= get_book_price($search_by);
 	$book_id		= get_book_id($search_by);
 ?>		
-		<div class="col-md-3">
+		<div class="col-sm-6 col-md-3 mt-2">
 			<form method="post" action="actions/add1.php?action=add&id=<?php echo $book_id; ?>">
 				<div class="card">
 				<img src="<?php echo $img_path; ?>" alt="card-1" class="card-img-top">
