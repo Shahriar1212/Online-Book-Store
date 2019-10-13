@@ -3,6 +3,7 @@
 //session_start();
 $title = "Registration";
 include("includes/db.php");
+$msg = "";
 
 if(isset($_POST['register-submit'])) {
 	session_start();
@@ -13,27 +14,40 @@ if(isset($_POST['register-submit'])) {
 	$password 		= htmlspecialchars(stripslashes(trim($_POST['password'])));
 	$confirm 		= htmlspecialchars(stripslashes(trim($_POST['confirm_password'])));
 
-	if($password == $confirm){
-		$password = md5($password);
-		date_default_timezone_set('Asia/Dhaka');
-		$currentTime = date('Y-m-d H:i:s');
-		$status = 1;
+	$sql1 = "SELECT * FROM user WHERE email = '".$email."'";
+	$row1 = mysqli_query($db, $sql1);
 
-		$sql = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('$username', '$email', $phone, '$password', '$currentTime', '$status')";
-		//$sqlInsert = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('".$username."', '".$email.'",'".$password.'",'".$currentTime.'",'".$status.'")";
+	if($row1){
+		if(mysqli_fetch_array($row1) > 0){
+			// echo "ase";
+			$msg = "Email already exist";
+		} else {
+			// echo "nai";
+			if($password == $confirm){
+				$password = md5($password);
+				date_default_timezone_set('Asia/Dhaka');
+				$currentTime = date('Y-m-d H:i:s');
+				$status = 1;
 
-		$row = mysqli_query($db, $sql);
-		$_SESSION['message'] = 'you are logged in successfully';
-		$_SESSION['username'] = $username;
-		$_SESSION['email'] = $email;
-		$_SESSION['phone'] = $row['phone'];
-		$_SESSION['status'] = $row['status'];
-		$_SESSION['status'] = 1;
-		header('location: user_profile.php');
+				$sql = "INSERT INTO user(username, email, phone, password, created_date, status) VALUES('$username', '$email', $phone, '$password', '$currentTime', '$status')";
+				//$sqlInsert = "INSERT INTO user(username, email, phone, password, created_date,status) VALUES('".$username."', '".$email.'",'".$password.'",'".$currentTime.'",'".$status.'")";
 
-	} else {
-		$_SESSION['message'] = 'password didnt match';
-	}
+				$row = mysqli_query($db, $sql);
+				$_SESSION['message'] = 'you are logged in successfully';
+				$_SESSION['username'] = $username;
+				$_SESSION['email'] = $email;
+				$_SESSION['phone'] = $row['phone'];
+				$_SESSION['status'] = $row['status'];
+				$_SESSION['status'] = 1;
+				header('location: user_profile.php');
+
+			} else {
+				$_SESSION['message'] = 'password didnt match';
+			}
+		}
+	} 
+
+	
 }
 
 ?>
@@ -170,8 +184,17 @@ if(isset($_POST['register-submit'])) {
 								<!-- form ends here ----------------  -->
 
 							</div>
+							
 						</div>
+
 					</div>
+
+				</div>
+				<div class="row">
+					<h2 style="
+						text-align: center;
+						color: red;
+					"><?php echo $msg; ?></h2>
 				</div>
 			</div>
 		</div>

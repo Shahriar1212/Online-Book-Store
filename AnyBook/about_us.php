@@ -12,7 +12,12 @@ include("includes/header.php");
     <div class= " my_container">
         <div class= "about col-md-12">
             <div class= "text">
-                <h1>About Us</h1>
+                <h1 style="
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                ">About Us</h1>
             <div class= "line"></div>
             </div>
         </div>
