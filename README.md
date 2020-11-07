@@ -27,6 +27,7 @@ AnyBook is an online bookshop or bookstore that helps you save time and money. y
 7. [Go to php localhost](http://localhost/phpmyadmin/)
 8. Create a database name "my_db"
 9. Import the sql file from the project folder to "my_db"
+10. Go to the browser and visit [http://localhost/AnyBook/](http://localhost/AnyBook/)
 
 **[Image]**
   ![](AnyBook/img/demo1.PNG)
