@@ -29,4 +29,4 @@ AnyBook is an online bookshop or bookstore that helps you save time and money. y
 9. Import the sql file from the project folder to "my_db"
 
 **[Image]**
-![](img/demp1.png)
+  ![](AnyBook/img/demo1.PNG)
